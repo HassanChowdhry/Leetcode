@@ -1,0 +1,5 @@
+// https://leetcode.com/problems/students-with-invalid-departments
+
+# Write your MySQL query statement below
+SELECT Students.id, Students.name FROM Students
+   WHERE Students.department_id NOT in (SELECT Departments.id FROM Departments);

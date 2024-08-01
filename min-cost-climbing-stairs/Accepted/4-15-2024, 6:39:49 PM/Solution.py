@@ -1,0 +1,20 @@
+// https://leetcode.com/problems/min-cost-climbing-stairs
+
+class Solution:
+    def minCostClimbingStairs(self, cost: List[int]) -> int:
+        memo={}
+        n = len(cost)
+
+        @cache
+        def backtrack(i):
+            if i < 0:
+                return 0
+            if i == 0 or i == 1:
+                return cost[i]
+            if i in memo:
+                return memo[i]
+            
+            memo[i] = cost[i] + min(backtrack(i-1), backtrack(i-2))
+            return memo[i]
+        
+        return min(backtrack(n-1), backtrack(n-2))

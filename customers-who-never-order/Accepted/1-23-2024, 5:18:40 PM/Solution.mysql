@@ -1,0 +1,6 @@
+// https://leetcode.com/problems/customers-who-never-order
+
+# Write your MySQL query statement below
+SELECT name as Customers from Customers
+left join orders on Customers.id = orders.customerId
+WHERE customerId IS NULL

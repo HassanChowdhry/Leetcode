@@ -1,0 +1,26 @@
+// https://leetcode.com/problems/palindromic-substrings
+
+class Solution(object):
+    def countSubstrings(self, s):
+      # declare
+      count = len(s)
+      visited = set()
+      
+      # checks if palindrome
+      def isPalindrome(i, j):
+        if i >= j or s[i: j+1] in visited:
+          return True
+        if s[i] != s[j]:
+          return False
+        
+        return isPalindrome(i+1, j-1)
+      
+      # adds if in set or palindrom
+      for i in range(len(s) - 1):
+        for j in range(i + 1, len(s)):
+          if s[i:j+1] in visited or isPalindrome(i, j):
+            count += 1
+            visited.add(s[i:j+1])
+      
+      # return
+      return count
